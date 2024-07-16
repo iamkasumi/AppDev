@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 183, 186, 171),
         leading: Padding(
@@ -43,9 +44,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      
       body: Center(
         child: _pages.elementAt(_selectedIndex),
       ),
+      
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -80,10 +83,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+
       child: Padding(
+        
         padding: const EdgeInsets.all(16.0),
+        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(16.0),
@@ -96,7 +103,9 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 24),
               ),
             ),
+            
             const SizedBox(height: 20),
+            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -108,22 +117,29 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
             ),
+            
             const SizedBox(height: 20),
+            
             Container(
               padding: const EdgeInsets.all(16.0),
+              
               decoration: BoxDecoration(
                 color: Color(0xFFD6DAC8),
                 borderRadius: BorderRadius.circular(10),
               ),
+              
               child: Column(
                 children: <Widget>[
                   const Text(
                     'Select an emotion:',
                     style: TextStyle(fontSize: 18),
                   ),
+                  
                   const SizedBox(height: 10),
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    
                     children: <Widget>[
                       Column(
                         children: <Widget>[
@@ -132,6 +148,7 @@ class HomeScreen extends StatelessWidget {
                           const Text('Badly'),
                         ],
                       ),
+                      
                       Column(
                         children: <Widget>[
                           Icon(Icons.sentiment_dissatisfied, size: 30, color: Colors.orange),
@@ -139,6 +156,7 @@ class HomeScreen extends StatelessWidget {
                           const Text('Fine'),
                         ],
                       ),
+                      
                       Column(
                         children: <Widget>[
                           Icon(Icons.sentiment_satisfied, size: 30, color: Colors.yellow),
@@ -146,6 +164,7 @@ class HomeScreen extends StatelessWidget {
                           const Text('Well'),
                         ],
                       ),
+                      
                       Column(
                         children: <Widget>[
                           Icon(Icons.sentiment_very_satisfied, size: 30, color: Colors.green),
