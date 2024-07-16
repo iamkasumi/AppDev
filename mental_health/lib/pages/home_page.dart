@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/butterfly.jpg'), 
+          child: Image.asset('images/butterfly.jpg'), // Ensure you have a butterfly image in the assets folder
         ),
         actions: <Widget>[
           IconButton(
@@ -46,11 +46,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      
       body: Center(
         child: _pages.elementAt(_selectedIndex), // Display the selected page
       ),
-      
       // BottomNavigationBar with four items
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -87,20 +85,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0), // Padding on all sides
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Good morning, <name>!', // Display greeting
+              'Hello, <name>!', // Display greeting
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            
             const SizedBox(height: 8),
-            
             Text(
               'How do you feel today?', // Prompt user to select their mood
               style: TextStyle(
@@ -108,9 +104,7 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.grey[600],
               ),
             ),
-            
             const SizedBox(height: 20),
-            
             // Row of emojis representing different moods
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -121,10 +115,8 @@ class HomeScreen extends StatelessWidget {
                 EmotionWidget(emoji: '😌', label: 'Relaxed'),
               ],
             ),
-            
             const SizedBox(height: 20),
             // Container for positive vibes section
-            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -164,9 +156,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            
             const SizedBox(height: 20),
-
             // Section title for explore moods
             Text(
               'Explore moods:',
@@ -175,9 +165,7 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            
             const SizedBox(height: 10),
-            
             // Row containing mood widgets
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -229,13 +217,12 @@ class MoodWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0), // Padding on all sides
       width: 150,
       decoration: BoxDecoration(
         color: Color(0xFFFBF3D5), // Background color
         borderRadius: BorderRadius.circular(10),
       ),
-      
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -246,9 +233,7 @@ class MoodWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          
           const SizedBox(height: 5),
-          
           Text(
             description,
             style: TextStyle(
@@ -256,9 +241,7 @@ class MoodWidget extends StatelessWidget {
               color: Colors.grey[700],
             ),
           ),
-          
           const SizedBox(height: 10),
-          
           Icon(Icons.play_circle_filled, size: 40, color: Colors.black54), // Play icon
         ],
       ),
