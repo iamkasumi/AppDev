@@ -28,6 +28,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 183, 186, 171),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset('images/butterfly.jpg'), 
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.more_vert),
+            onPressed: () {
+              // Handle menu action
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: _pages.elementAt(_selectedIndex),
       ),
@@ -70,7 +85,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -83,7 +97,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -96,7 +109,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
