@@ -56,13 +56,15 @@ class _HomePageState extends State<HomePage> {
         ],
         
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+        selectedItemColor: Color.fromARGB(255, 97, 109, 105),
+        unselectedItemColor: Color.fromARGB(255, 183, 186, 171),
         onTap: _onItemTapped,
       ),
     );
   }
 }
 
+//contains the home page disp
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
