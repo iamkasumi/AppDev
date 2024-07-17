@@ -25,10 +25,10 @@ class AffirmationsPage extends StatelessWidget {
       'affirmations': [
         'My mind is focused.',
         'I am present in the moment.',
-         'I am gifted',
-         'I let go of all resistance to change.',
-         'I am present',
-         'Good things are around me.',
+        'I am gifted',
+        'I let go of all resistance to change.',
+        'I am present',
+        'Good things are around me.',
       ]
     },
     {
@@ -179,19 +179,42 @@ class AffirmationDetailPage extends StatelessWidget {
         itemCount: affirmations.length,
         itemBuilder: (context, index) {
           return Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.8, // Fixed width
-              height: MediaQuery.of(context).size.height * 0.5, // Fixed height
-              child: Card(
-                elevation: 5,
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: Text(
-                      affirmations[index],
-                      style: const TextStyle(fontSize: 24),
-                      textAlign: TextAlign.center,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.8, // Fixed width
+                height: MediaQuery.of(context).size.height * 0.5, // Fixed height
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/mindful.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Card(
+                  color: Colors.transparent, // Make the card color transparent
+                  elevation: 0, // Remove card elevation
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Text(
+                        affirmations[index],
+                        style: const TextStyle(
+                          fontSize: 24,
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
