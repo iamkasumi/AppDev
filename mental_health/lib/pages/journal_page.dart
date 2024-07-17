@@ -1,7 +1,44 @@
 import 'package:flutter/material.dart';
+import 'add_journal_entry_page.dart';
+import 'view_journal_entry_page.dart';
 
-class JournalPage extends StatelessWidget {
+class JournalPage extends StatefulWidget {
   const JournalPage({super.key});
+
+  @override
+  _JournalPageState createState() => _JournalPageState();
+}
+
+class _JournalPageState extends State<JournalPage> {
+  final List<Map<String, String>> _journalEntries = [
+    {
+      "date": "02 May 2022",
+      "mood": "Awesome",
+      "moodColor": "0xFFFF0000",
+      "title": "What are you grateful for?",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis dui facilisi."
+    },
+    {
+      "date": "28 April 2022",
+      "mood": "Happy",
+      "moodColor": "0xFFFFFF00",
+      "title": "What one thing that drove your action?",
+      "description": "Commodo pellentesque vivamus faucibus natoque enim elementum."
+    },
+    {
+      "date": "15 March 2022",
+      "mood": "Terrible",
+      "moodColor": "0xFF0000FF",
+      "title": "What was the best part of your day?",
+      "description": "Elementum diam amet commodo, mollis congue sed in. Vitae et mi pretium leo."
+    },
+  ];
+
+  void _addNewEntry(Map<String, String> newEntry) {
+    setState(() {
+      _journalEntries.add(newEntry);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,37 +69,47 @@ class JournalPage extends StatelessWidget {
             const SizedBox(height: 16),
             // List of journal entries
             Expanded(
-              child: ListView(
-                children: const [
-                  JournalEntry(
-                    date: "02 May 2022",
-                    mood: "Awesome",
-                    moodColor: Colors.red,
-                    title: "What are you grateful for?",
-                    description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis dui facilisi.",
-                  ),
-                  JournalEntry(
-                    date: "28 April 2022",
-                    mood: "Happy",
-                    moodColor: Colors.yellow,
-                    title: "What one thing that drove your action?",
-                    description:
-                        "Commodo pellentesque vivamus faucibus natoque enim elementum.",
-                  ),
-                  JournalEntry(
-                    date: "15 March 2022",
-                    mood: "Terrible",
-                    moodColor: Colors.blue,
-                    title: "What was the best part of your day?",
-                    description:
-                        "Elementum diam amet commodo, mollis congue sed in. Vitae et mi pretium leo.",
-                  ),
-                ],
+              child: ListView.builder(
+                itemCount: _journalEntries.length,
+                itemBuilder: (context, index) {
+                  final entry = _journalEntries[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ViewJournalEntryPage(
+                            entry: entry,
+                          ),
+                        ),
+                      );
+                    },
+                    child: JournalEntry(
+                      date: entry["date"]!,
+                      mood: entry["mood"]!,
+                      moodColor: Color(int.parse(entry["moodColor"]!)),
+                      title: entry["title"]!,
+                      description: entry["description"]!,
+                    ),
+                  );
+                },
               ),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddJournalEntryPage(
+                addEntry: _addNewEntry,
+              ),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
