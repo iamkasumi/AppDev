@@ -104,7 +104,7 @@ class AffirmationsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Affirmations'),
-        backgroundColor: const Color.fromARGB(255, 97, 109, 105),
+        //backgroundColor: const Color.fromARGB(255, 97, 109, 105),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
