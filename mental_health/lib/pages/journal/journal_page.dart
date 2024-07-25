@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'add_journal.dart';
 import 'view_journal.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class JournalPage extends StatefulWidget {
   const JournalPage({super.key});
@@ -11,7 +11,29 @@ class JournalPage extends StatefulWidget {
 }
 
 class _JournalPageState extends State<JournalPage> {
-  final List<Map<String, String>> _journalEntries = [];
+  final List<Map<String, String>> _journalEntries = [
+    {
+      "date": "02 May 2022",
+      "mood": "Happy",
+      "emoji": '😊',
+      "title": "What are you grateful for?",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis dui facilisi."
+    },
+    {
+      "date": "28 April 2022",
+      "mood": "Sad",
+      "emoji": '😢',
+      "title": "What one thing that drove your action?",
+      "description": "Commodo pellentesque vivamus faucibus natoque enim elementum."
+    },
+    {
+      "date": "15 March 2022",
+      "mood": "Angry",
+      "emoji": '😡',
+      "title": "What was the best part of your day?",
+      "description": "Elementum diam amet commodo, mollis congue sed in. Vitae et mi pretium leo."
+    },
+  ];
 
   void _addNewEntry(Map<String, String> newEntry) {
     setState(() {
