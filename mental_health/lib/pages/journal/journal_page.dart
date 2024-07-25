@@ -15,21 +15,21 @@ class _JournalPageState extends State<JournalPage> {
       "date": "02 May 2022",
       "mood": "Awesome",
       "moodColor": "0xFFFF0000",
-      "title": "What are you grateful for?",
+      "title": "Story of Jonathan",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis dui facilisi."
     },
     {
       "date": "28 April 2022",
       "mood": "Happy",
       "moodColor": "0xFFFFFF00",
-      "title": "What one thing that drove your action?",
+      "title": "Story of Nathan",
       "description": "Commodo pellentesque vivamus faucibus natoque enim elementum."
     },
     {
       "date": "15 March 2022",
       "mood": "Terrible",
       "moodColor": "0xFF0000FF",
-      "title": "What was the best part of your day?",
+      "title": "Story of Solomon",
       "description": "Elementum diam amet commodo, mollis congue sed in. Vitae et mi pretium leo."
     },
   ];

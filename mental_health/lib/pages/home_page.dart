@@ -10,14 +10,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               'Hello, $nickname!', // Display greeting with nickname
               style: GoogleFonts.poppins(
-                fontSize: 20,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -27,8 +27,8 @@ class HomeScreen extends StatelessWidget {
             Text(
               'How do you feel today?', // Prompt user to select their mood
               style: GoogleFonts.poppins(
-                fontSize: 18,
-                color: Colors.grey[600],
+                fontSize: 16,
+                color: const Color.fromARGB(255, 90, 88, 88),
               ),
             ),
             
