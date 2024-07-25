@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mental_health/pages/home_page.dart';
+import 'package:mental_health/pages/homeScreen.dart';
 
 class PersonalizationScreen extends StatelessWidget {
   const PersonalizationScreen({super.key});
