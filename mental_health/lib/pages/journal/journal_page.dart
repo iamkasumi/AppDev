@@ -17,21 +17,21 @@ class _JournalPageState extends State<JournalPage> {
       "mood": "Happy",
       "emoji": '😊',
       "title": "What are you grateful for?",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis dui facilisi."
+      "description": "I am grateful for the opportunity to help and learn from so many different people."
     },
     {
       "date": "28 April 2022",
       "mood": "Sad",
       "emoji": '😢',
       "title": "What one thing that drove your action?",
-      "description": "Commodo pellentesque vivamus faucibus natoque enim elementum."
+      "description": "Curiosity is often what drives my actions. It fuels the desire to explore new topics, solve problems, and understand the world better."
     },
     {
       "date": "15 March 2022",
       "mood": "Angry",
       "emoji": '😡',
       "title": "What was the best part of your day?",
-      "description": "Elementum diam amet commodo, mollis congue sed in. Vitae et mi pretium leo."
+      "description": "The best part of my day is finishing this project."
     },
   ];
 
@@ -44,8 +44,9 @@ class _JournalPageState extends State<JournalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 245, 245, 241),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0), // Padding for the whole page
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,7 +57,9 @@ class _JournalPageState extends State<JournalPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            
             const SizedBox(height: 16),
+            
             TextField(
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
@@ -69,7 +72,9 @@ class _JournalPageState extends State<JournalPage> {
                 fillColor: Colors.grey[200],
               ),
             ),
+            
             const SizedBox(height: 16),
+            
             Expanded(
               child: ListView.builder(
                 itemCount: _journalEntries.length,
@@ -100,16 +105,31 @@ class _JournalPageState extends State<JournalPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddJournalEntryPage(addEntry: _addNewEntry),
-            ),
-          );
-        },
-        child: Icon(Icons.add),
+      
+      floatingActionButton: SizedBox(
+        width: 55.0,
+        height: 55.0,
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddJournalEntryPage(addEntry: _addNewEntry),
+              ),
+            );
+          },
+          
+          child: Icon(
+            Icons.edit,
+            color: Color.fromRGBO(1, 4, 26, 1),
+          ),
+          
+          backgroundColor: Color.fromARGB(255, 163, 197, 225),
+          
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+        ),
       ),
     );
   }
@@ -134,8 +154,9 @@ class JournalEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
+      color: Color.fromARGB(255, 244, 213, 197),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(15.0), // Padding inside the card
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -143,9 +164,15 @@ class JournalEntry extends StatelessWidget {
               children: [
                 Text(
                   date,
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromARGB(255, 75, 75, 75),
+                  ),
                 ),
+                
                 const Spacer(),
+                
                 EmotionWidget(
                   emoji: emoji,
                   label: mood,
@@ -154,18 +181,27 @@ class JournalEntry extends StatelessWidget {
                 ),
               ],
             ),
+            
             const SizedBox(height: 8),
+            
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 18,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 75, 75, 75),
               ),
             ),
+            
             const SizedBox(height: 8),
+            
             Text(
               description,
-              style: TextStyle(color: Colors.grey[700]),
+              style: GoogleFonts.montserrat(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: Color.fromARGB(255, 75, 75, 75),
+              ),
             ),
           ],
         ),
@@ -193,15 +229,18 @@ class EmotionWidget extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
+          
           Text(
             emoji,
             style: TextStyle(fontSize: 24),
           ),
+          
           const SizedBox(height: 4),
+          
           Text(
             label,
-            style: TextStyle(
-              color: isSelected ? Colors.blue : Colors.black,
+            style: GoogleFonts.montserrat(
+              color: isSelected ? Color.fromARGB(255, 39, 159, 218) : Colors.black,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),

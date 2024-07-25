@@ -3,6 +3,7 @@ import 'video_page.dart';
 import 'affirmations_page.dart';
 import 'journal/journal_page.dart';
 import 'home_page.dart'; 
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   final String nickname; // Add a field to store the nickname
@@ -34,26 +35,61 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Image.asset(
-            'images/butterfly-1.jpg',
-            width: 40,
-            height: 40,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0), 
+        
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20.0), 
+            ),
+            
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 3), 
+              ),
+            ],
+          ),
+          
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'images/butterfly-1.jpg',
+                  width: 40,
+                  height: 40,
+                ),
+                
+                const SizedBox(width: 8), 
+                
+                Text(
+                  "Eunoia",
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+            
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.more_vert, color: Colors.black),
+                onPressed: () {
+                  // Handle menu action
+                },
+              ),
+            ],
           ),
         ),
-        
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.more_vert, color: Colors.black),
-            onPressed: () {
-              // Handle menu action
-            },
-          ),
-        ],
       ),
       
       body: Center(
