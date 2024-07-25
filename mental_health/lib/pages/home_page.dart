@@ -32,14 +32,11 @@ class _HomePageState extends State<HomePage> {
       // AppBar with a butterfly image on the left and a menu icon on the right
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        
         elevation: 0,
-        
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/butterfly.jpg'), // Ensure you have a butterfly image in the assets folder
+          child: Image.asset('images/butterfly.jpg'), 
         ),
-        
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.more_vert, color: Colors.black),
@@ -61,23 +58,19 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.video_collection),
             label: 'Videos',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.format_quote),
             label: 'Affirmations',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
             label: 'Journal',
           ),
         ],
-        
         currentIndex: _selectedIndex,
         selectedItemColor: Color.fromARGB(255, 97, 109, 105), // Selected item color
         unselectedItemColor: Color.fromARGB(255, 183, 186, 171), // Unselected item color
@@ -94,14 +87,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0), // Padding on all sides
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               'Hello, <name>!', // Display greeting
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -117,9 +110,9 @@ class HomeScreen extends StatelessWidget {
             ),
             
             const SizedBox(height: 20),
-            // Row of emojis representing different moods
             
-            Row (
+            // Row of emojis representing different moods
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 EmotionWidget(emoji: '😡', label: 'Angry'),
@@ -130,8 +123,8 @@ class HomeScreen extends StatelessWidget {
             ),
             
             const SizedBox(height: 20),
-            
             // Container for positive vibes section
+            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -152,7 +145,6 @@ class HomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      
                       Text(
                         'Positive affirmations which will help you keep good mood all day.', // Description
                         style: TextStyle(
@@ -160,7 +152,6 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.grey[700],
                         ),
                       ),
-                      
                       Text(
                         '10 min', // Duration
                         style: TextStyle(
@@ -168,7 +159,6 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.grey[600],
                         ),
                       ),
-
                     ],
                   ),
                 ],
@@ -176,7 +166,7 @@ class HomeScreen extends StatelessWidget {
             ),
             
             const SizedBox(height: 20),
-            
+
             // Section title for explore moods
             Text(
               'Explore moods:',
@@ -239,7 +229,7 @@ class MoodWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0), // Padding on all sides
+      padding: const EdgeInsets.all(16.0),
       width: 150,
       decoration: BoxDecoration(
         color: Color(0xFFFBF3D5), // Background color
@@ -250,27 +240,20 @@ class MoodWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            title,
+            title, // Display title
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          
-          const SizedBox(height: 5),
-          
+          const SizedBox(height: 10),
           Text(
-            description,
+            description, // Display description
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[700],
             ),
           ),
-          
-          const SizedBox(height: 10),
-          
-          Icon(Icons.play_circle_filled, size: 40, color: Colors.black54), // Play icon
-
         ],
       ),
     );
