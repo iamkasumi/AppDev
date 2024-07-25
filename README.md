@@ -18,12 +18,7 @@ The following are the objectives of the mobile application:
 ### Members and their Contributions  
 The following are the members of the group:  
 
-Catilo, Kanneh Anthonie
-Frago, Angel Lloydylene    
-Guerra, Rhiz Anne
-Villegas, Pamela  
-
-## GUI
-### Log In
-![image](https://github.com/iampamelav/FINAL-SRMS/assets/118470324/8b3b3b55-d9d2-412a-8fbc-a897d3bf62be)
-(https://github.com/iampamelav/FINAL-SRMS/assets/118470324/823cac5c-017e-471c-9a62-ba60ada01016)
+- Catilo, Kanneh Anthonie
+- Frago, Angel Lloydylene    
+- Guerra, Rhiz Anne
+- Villegas, Pamela  
