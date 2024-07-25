@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mental_health/pages/nickname_input.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -7,67 +8,84 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFF3E0), // Background color
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255), // Background color
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Placeholder for the abstract shape
-              Container(
-                width: 120,
-                height: 200,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xFFF5D6B2), Color(0xFFFBF3D5)],
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(100),
-                    topRight: Radius.circular(100),
-                  ),
-                ),
+              
+              // Inserted image
+              Image.asset(
+                'images/meditation.jpg',
+                width: 300,
+                height: 300,
+                fit: BoxFit.cover,
               ),
               const SizedBox(height: 40),
-              // Text message
-              Text(
-                'Feeling stuck?',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              
+              // Text message with different styles
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Feeling ',
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'stuck?',
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: 30,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 13),
+              
               Text(
-                'Learn how to surf on the waves of emotions with our app.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[600],
+                'Learn how to surf on the waves \nof emotions with our app.',
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: const Color.fromARGB(255, 113, 111, 111),
                 ),
                 textAlign: TextAlign.center,
               ),
+              
               const SizedBox(height: 40),
+              
               // Button to navigate to the HomePage
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(builder: (context) => const PersonalizationScreen()), //redirecting to next page
                   );
                 },
+                
                 style: ElevatedButton.styleFrom(
-                  //primary: Color(0xFFF5D6B2), // Button color
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                  backgroundColor: const Color(0xFFFFC1A3), 
+                  padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20), 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(20), 
                   ),
                 ),
-                child: const Text(
-                  "Let's begin",
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                
+                child: Text(
+                  "Let's begin!",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromARGB(255, 59, 58, 58),
+                  ),
                 ),
               ),
             ],
