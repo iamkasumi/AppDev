@@ -45,7 +45,7 @@ class _VideoPageState extends State<VideoPage> {
     },
     {
       'image': 'images/affirm_images/financial-freedom.png',
-      'title': 'Financial Freedom and Wealth',
+      'title': 'Financial Wealth',
       'videos': [
         {
           'image': 'images/affirm_images/financial.jpg',
@@ -170,7 +170,7 @@ class _VideoPageState extends State<VideoPage> {
       ),
       
       body: Container(
-        color: Color.fromARGB(255, 240, 232, 222), // Light yellow color
+        color: Color.fromARGB(255, 230, 240, 227), // Light yellow color
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: StaggeredGridView.countBuilder(
@@ -206,9 +206,9 @@ class _VideoPageState extends State<VideoPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 video['title']!,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.center,
               ),
