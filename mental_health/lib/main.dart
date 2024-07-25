@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mental_health/pages/home_page.dart';
+import 'package:mental_health/pages/welcomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
-      );
+      title: 'Eunoia: Mental Well-Being',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const WelcomeScreen(),
+    );
   }
 }
