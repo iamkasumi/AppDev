@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart'; 
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final String nickname; // Add a field to store the nickname
+  const HomeScreen({super.key, required this.nickname}); // Update constructor to accept nickname
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Hello, <name>!', // Display greeting
+              'Hello, $nickname!', // Display greeting with nickname
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -44,8 +45,8 @@ class HomeScreen extends StatelessWidget {
             ),
             
             const SizedBox(height: 20),
-            // Container for positive vibes section
             
+            // Container for positive vibes section
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -66,6 +67,7 @@ class HomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      
                       Text(
                         'Positive affirmations which will help you keep good mood all day.', // Description
                         style: GoogleFonts.poppins(
@@ -73,6 +75,7 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.grey[700],
                         ),
                       ),
+                      
                       Text(
                         '10 min', // Duration
                         style: GoogleFonts.poppins(
@@ -156,7 +159,6 @@ class MoodWidget extends StatelessWidget {
         color: Color(0xFFFBF3D5), // Background color
         borderRadius: BorderRadius.circular(10),
       ),
-      
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

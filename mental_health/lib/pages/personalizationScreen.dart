@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mental_health/pages/homeScreen.dart';
+import 'package:mental_health/pages/homeScreen.dart'; 
 
-class PersonalizationScreen extends StatelessWidget {
+class PersonalizationScreen extends StatefulWidget {
   const PersonalizationScreen({super.key});
+
+  @override
+  _PersonalizationScreenState createState() => _PersonalizationScreenState();
+}
+
+class _PersonalizationScreenState extends State<PersonalizationScreen> {
+  final TextEditingController _nicknameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +60,7 @@ class PersonalizationScreen extends StatelessWidget {
                   children: [
                     
                     TextField(
+                      controller: _nicknameController,
                       style: GoogleFonts.poppins(
                         fontSize: 16, 
                         fontWeight: FontWeight.w400, 
@@ -91,9 +99,12 @@ class PersonalizationScreen extends StatelessWidget {
               // Button to navigate to the HomePage
               ElevatedButton(
                 onPressed: () {
+                  final nickname = _nicknameController.text;
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()), // redirecting to the next page
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(nickname: nickname),
+                    ),
                   );
                 },
                 

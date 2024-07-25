@@ -5,7 +5,8 @@ import 'journal_page.dart';
 import 'home_page.dart'; 
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String nickname; // Add a field to store the nickname
+  const HomePage({super.key, required this.nickname}); // Update constructor to accept nickname
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -13,13 +14,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0; // To keep track of the selected index of the BottomNavigationBar
-  
-  static const List<Widget> _pages = <Widget>[
-    HomeScreen(),
-    VideoPage(),
-    AffirmationsPage(),
-    JournalPage(),
-  ];
+
+  // Define pages with the nickname passed to HomeScreen
+  List<Widget> get _pages => <Widget>[
+        HomeScreen(nickname: widget.nickname), // Pass the nickname here
+        VideoPage(),
+        AffirmationsPage(),
+        JournalPage(),
+      ];
 
   // Function to handle navigation bar item tap
   void _onItemTapped(int index) {
@@ -31,14 +33,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      // AppBar with a butterfly image on the left and a menu icon on the right
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/butterfly.jpg'), 
+          child: Image.asset('images/butterfly.jpg'),
         ),
         
         actions: <Widget>[
@@ -55,9 +55,9 @@ class _HomePageState extends State<HomePage> {
         child: _pages.elementAt(_selectedIndex), // Display the selected page
       ),
       
-      // BottomNavigationBar with four items
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
+          
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -79,8 +79,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 97, 109, 105), // Selected item color
-        unselectedItemColor: Color.fromARGB(255, 183, 186, 171), // Unselected item color
+        selectedItemColor: Color.fromARGB(255, 97, 109, 105),
+        unselectedItemColor: Color.fromARGB(255, 183, 186, 171),
         onTap: _onItemTapped, // Handle tap on navigation bar items
       ),
     );
