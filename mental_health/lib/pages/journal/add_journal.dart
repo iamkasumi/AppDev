@@ -55,13 +55,13 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
           "Add Journal Entry",
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color(0xFFB2DFDB), // Light teal background color
+        backgroundColor: Color.fromARGB(255, 133, 186, 180), // Light teal background color
       ),
       body: Stack(
         children: [
           Positioned.fill(
             child: Image.asset(
-              'images/pastel_b.jpg',
+              'images/green.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -92,12 +92,19 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 16),
+                  
+                  const SizedBox(height: 18),
+                  
                   Text(
                     "How do you feel today?",
-                    style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w600),
+                    style: GoogleFonts.poppins(
+                      fontSize: 18, 
+                      fontWeight: FontWeight.w600
+                    ),
                   ),
-                  const SizedBox(height: 8),
+                  
+                  const SizedBox(height: 10),
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -147,7 +154,9 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  
+                  const SizedBox(height: 18),
+                  
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Title',
@@ -167,7 +176,9 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
                       _title = value!;
                     },
                   ),
-                  const SizedBox(height: 16),
+                  
+                  const SizedBox(height: 18),
+                  
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Write your thoughts here...',
@@ -188,15 +199,17 @@ class _AddJournalEntryPageState extends State<AddJournalEntryPage> {
                       _description = value!;
                     },
                   ),
+                  
                   const SizedBox(height: 24),
+                  
                   ElevatedButton(
                     onPressed: _submitEntry,
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      backgroundColor: Color(0xFF00796B), // Teal color
+                      backgroundColor: Color(0xFF00796B), 
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     ),
                     child: Text(
                       'Save',
@@ -237,11 +250,11 @@ class EmotionWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-          color: isSelected ? Color(0xFFB2DFDB) : Colors.transparent, // Light teal color
-          borderRadius: BorderRadius.circular(12.0),
+          color: isSelected ? Color.fromARGB(255, 197, 228, 226) : Colors.transparent, // Light teal color
+          borderRadius: BorderRadius.circular(20.0),
           border: Border.all(
-            color: isSelected ? Color(0xFF00796B) : Colors.grey, // Teal color when selected
-            width: 2.0,
+            color: isSelected ? Color.fromARGB(255, 0, 0, 0) : Colors.transparent, // Teal color when selected
+            width: 1.0,
           ),
         ),
         child: Column(
@@ -254,7 +267,7 @@ class EmotionWidget extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? Color(0xFF00796B) : Colors.black, // Teal color when selected
+                color: isSelected ? Color.fromARGB(255, 0, 0, 0) : Colors.black, // Teal color when selected
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),

@@ -53,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
               Text(
                 'Learn how to surf on the waves \nof emotions with our app.',
                 style: GoogleFonts.poppins(
-                  fontSize: 14,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: const Color.fromARGB(255, 113, 111, 111),
                 ),

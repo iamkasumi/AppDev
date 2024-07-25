@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ViewJournalEntryPage extends StatelessWidget {
   final Map<String, String> entry;
@@ -9,10 +10,23 @@ class ViewJournalEntryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Journal'),
+        backgroundColor: const Color(0xFFE1F5FE), // Light blue color
+        title: Text(
+          'Journal',
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            color: const Color(0xFF444444), // Dark grey color
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF444444)),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -21,15 +35,19 @@ class ViewJournalEntryPage extends StatelessWidget {
                 children: [
                   Text(
                     entry['title']!,
-                    style: TextStyle(
-                      fontSize: 24,
+                    style: GoogleFonts.poppins(
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
+                      color: const Color(0xFF444444), // Dark grey color
                     ),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     entry['date']!,
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: GoogleFonts.poppins(
+                      color: const Color(0xFF888888), // Medium grey color
+                    ),
                   ),
                   const SizedBox(height: 16),
                   EmotionWidget(
@@ -38,18 +56,22 @@ class ViewJournalEntryPage extends StatelessWidget {
                     isSelected: true,
                     onTap: () {},
                   ),
-                  const SizedBox(height: 16),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 32),
             Text(
               entry['description']!,
-              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                height: 1.6, // Line height for better readability
+                color: const Color(0xFF666666), // Medium grey color
+              ),
             ),
           ],
         ),
       ),
+      backgroundColor: const Color(0xFFFFFFFF), // White background for clean look
     );
   }
 }
@@ -71,21 +93,33 @@ class EmotionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Column(
-        children: [
-          Text(
-            emoji,
-            style: TextStyle(fontSize: 24),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        decoration: BoxDecoration(
+          color: isSelected ? const Color(0xFFE1F5FE) : Colors.transparent, // Light blue background if selected
+          borderRadius: BorderRadius.circular(12.0),
+          border: Border.all(
+            color: isSelected ? const Color(0xFF0288D1) : Colors.transparent, // Blue border if selected
+            width: 2.0,
           ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: isSelected ? Colors.blue : Colors.black,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              emoji,
+              style: const TextStyle(fontSize: 24),
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: GoogleFonts.poppins(
+                color: isSelected ? const Color(0xFF0288D1) : const Color(0xFF666666), // Blue or medium grey color
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
