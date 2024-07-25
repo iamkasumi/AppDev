@@ -9,6 +9,7 @@ class ViewJournalEntryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         backgroundColor: const Color(0xFFE1F5FE), // Light blue color
         title: Text(
@@ -25,6 +26,7 @@ class ViewJournalEntryPage extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
+      
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -33,6 +35,7 @@ class ViewJournalEntryPage extends StatelessWidget {
             Center(
               child: Column(
                 children: [
+                  
                   Text(
                     entry['title']!,
                     style: GoogleFonts.poppins(
@@ -42,14 +45,18 @@ class ViewJournalEntryPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  
                   const SizedBox(height: 8),
+                  
                   Text(
                     entry['date']!,
                     style: GoogleFonts.poppins(
                       color: const Color(0xFF888888), // Medium grey color
                     ),
                   ),
+                  
                   const SizedBox(height: 16),
+                  
                   EmotionWidget(
                     emoji: entry['emoji']!,
                     label: entry['mood']!,
@@ -59,7 +66,9 @@ class ViewJournalEntryPage extends StatelessWidget {
                 ],
               ),
             ),
+            
             const SizedBox(height: 32),
+            
             Text(
               entry['description']!,
               style: GoogleFonts.poppins(
@@ -103,6 +112,7 @@ class EmotionWidget extends StatelessWidget {
             width: 2.0,
           ),
         ),
+        
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -110,11 +120,13 @@ class EmotionWidget extends StatelessWidget {
               emoji,
               style: const TextStyle(fontSize: 24),
             ),
+            
             const SizedBox(width: 8),
+            
             Text(
               label,
               style: GoogleFonts.poppins(
-                color: isSelected ? const Color(0xFF0288D1) : const Color(0xFF666666), // Blue or medium grey color
+                color: isSelected ? const Color(0xFF0288D1) : const Color(0xFF666666), 
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
