@@ -1,7 +1,7 @@
 ## Eunoia: Mental Well-Being
 
 #### FINAL PROJECT:    
-IT 331 - Application Development and Emerging Technologies 
+IT 331 - Application Development and Emerging Technologies     
 BSIT - 3301   
 
 ### Description
