@@ -98,7 +98,9 @@ class _VideoDeckScreenState extends State<VideoDeckScreen> {
                               aspectRatio: controller.value.aspectRatio,
                               child: VideoPlayer(controller),
                             )
-                          : CircularProgressIndicator(),
+                          : Center(
+                              child: CircularProgressIndicator(),
+                            ),
                     ),
                     Positioned.fill(
                       child: Container(

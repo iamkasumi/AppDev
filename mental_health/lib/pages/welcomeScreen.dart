@@ -15,7 +15,6 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              
               // Inserted image
               Image.asset(
                 'images/meditation.jpg',
@@ -65,12 +64,26 @@ class WelcomeScreen extends StatelessWidget {
               // Button to navigate to the HomePage
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PersonalizationScreen()), //redirecting to next page
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) => const PersonalizationScreen(),
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        const begin = 0.0;
+                        const end = 1.0;
+                        const curve = Curves.easeInOut;
+
+                        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                        var fadeAnimation = animation.drive(tween);
+
+                        return FadeTransition(
+                          opacity: fadeAnimation,
+                          child: child,
+                        );
+                      },
+                      transitionDuration: const Duration(milliseconds: 900), // Duration of the transition
+                    ),
                   );
                 },
-                
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFFFC1A3), 
                   padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20), 
@@ -78,7 +91,6 @@ class WelcomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20), 
                   ),
                 ),
-                
                 child: Text(
                   "Let's begin!",
                   style: GoogleFonts.poppins(
