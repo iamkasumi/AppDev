@@ -1,4 +1,4 @@
-## Holy Family Montessori: Student Record Management System
+## Eunoia: Mental Well-Being
 
 #### FINAL PROJECT:    
 IT 331 - System Administration and Maintenance   
