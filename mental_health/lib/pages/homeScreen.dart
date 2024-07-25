@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0), 
+        preferredSize: Size.fromHeight(63.0), 
         
         child: Container(
           decoration: BoxDecoration(
@@ -58,26 +58,28 @@ class _HomePageState extends State<HomePage> {
           child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'images/butterfly-1.jpg',
-                  width: 40,
-                  height: 40,
-                ),
-                
-                const SizedBox(width: 8), 
-                
-                Text(
-                  "Eunoia",
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black,
+            title: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min, // To center the row content
+                children: [
+                  Image.asset(
+                    'images/butterfly-1.jpg',
+                    width: 40,
+                    height: 40,
                   ),
-                ),
-              ],
+                  
+                  const SizedBox(width: 8), 
+                  
+                  Text(
+                    "Eunoia",
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
             
             actions: <Widget>[
@@ -98,7 +100,6 @@ class _HomePageState extends State<HomePage> {
       
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',

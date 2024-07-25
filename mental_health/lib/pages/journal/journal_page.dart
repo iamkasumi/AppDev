@@ -44,71 +44,80 @@ class _JournalPageState extends State<JournalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 245, 241),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0), // Padding for the whole page
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Journals",
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'images/pastel_p.jpg',
+              fit: BoxFit.cover,
             ),
-            
-            const SizedBox(height: 16),
-            
-            TextField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: "Search journal",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+          ),
+          // Main content
+          Padding(
+            padding: const EdgeInsets.all(20.0), // Padding for the entire screen
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Journals",
+                  style: GoogleFonts.poppins(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
                 ),
-                filled: true,
-                fillColor: Colors.grey[200],
-              ),
-            ),
-            
-            const SizedBox(height: 16),
-            
-            Expanded(
-              child: ListView.builder(
-                itemCount: _journalEntries.length,
-                itemBuilder: (context, index) {
-                  final entry = _journalEntries[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ViewJournalEntryPage(
-                            entry: entry,
-                          ),
+                const SizedBox(height: 16),
+                TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
+                    hintText: "Search journal",
+                    hintStyle: TextStyle(color: Colors.grey[500]),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14), // Adjust padding
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _journalEntries.length,
+                    itemBuilder: (context, index) {
+                      final entry = _journalEntries[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ViewJournalEntryPage(
+                                entry: entry,
+                              ),
+                            ),
+                          );
+                        },
+                        child: JournalEntry(
+                          date: entry["date"]!,
+                          mood: entry["mood"]!,
+                          emoji: entry["emoji"]!,
+                          title: entry["title"]!,
+                          description: entry["description"]!,
                         ),
                       );
                     },
-                    child: JournalEntry(
-                      date: entry["date"]!,
-                      mood: entry["mood"]!,
-                      emoji: entry["emoji"]!,
-                      title: entry["title"]!,
-                      description: entry["description"]!,
-                    ),
-                  );
-                },
-              ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      
       floatingActionButton: SizedBox(
-        width: 55.0,
-        height: 55.0,
+        width: 60.0,
+        height: 60.0,
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(
@@ -118,16 +127,10 @@ class _JournalPageState extends State<JournalPage> {
               ),
             );
           },
-          
-          child: Icon(
-            Icons.edit,
-            color: Color.fromRGBO(1, 4, 26, 1),
-          ),
-          
-          backgroundColor: Color.fromARGB(255, 163, 197, 225),
-          
+          child: Icon(Icons.add, color: Colors.white),
+          backgroundColor: Color(0xFF00796B), // Teal color for the FAB
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(16.0),
           ),
         ),
       ),
@@ -154,9 +157,13 @@ class JournalEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      color: Color.fromARGB(255, 244, 213, 197),
+      color: Colors.white,
+      elevation: 4, // Added elevation for a modern card effect
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(15.0), // Padding inside the card
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -166,13 +173,11 @@ class JournalEntry extends StatelessWidget {
                   date,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Color.fromARGB(255, 75, 75, 75),
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[700],
                   ),
                 ),
-                
                 const Spacer(),
-                
                 EmotionWidget(
                   emoji: emoji,
                   label: mood,
@@ -181,26 +186,22 @@ class JournalEntry extends StatelessWidget {
                 ),
               ],
             ),
-            
-            const SizedBox(height: 8),
-            
+            const SizedBox(height: 12),
             Text(
               title,
               style: GoogleFonts.poppins(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 75, 75, 75),
+                color: Colors.black87,
               ),
             ),
-            
             const SizedBox(height: 8),
-            
             Text(
               description,
               style: GoogleFonts.montserrat(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: Color.fromARGB(255, 75, 75, 75),
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey[700],
               ),
             ),
           ],
@@ -229,18 +230,15 @@ class EmotionWidget extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
-          
           Text(
             emoji,
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 28),
           ),
-          
           const SizedBox(height: 4),
-          
           Text(
             label,
             style: GoogleFonts.montserrat(
-              color: isSelected ? Color.fromARGB(255, 39, 159, 218) : Colors.black,
+              color: isSelected ? Color(0xFF00796B) : Colors.black54,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
