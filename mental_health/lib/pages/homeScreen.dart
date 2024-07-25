@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'video_page.dart';
 import 'affirmations_page.dart';
 import 'journal_page.dart';
@@ -36,11 +37,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/butterfly.jpg'),
+        title: Text(
+          'Hello, ${widget.nickname}!', // Display greeting with nickname
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.more_vert, color: Colors.black),
@@ -57,30 +60,27 @@ class _HomePageState extends State<HomePage> {
       
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.video_collection),
             label: 'Videos',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.format_quote),
             label: 'Affirmations',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
             label: 'Journal',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 97, 109, 105),
-        unselectedItemColor: Color.fromARGB(255, 183, 186, 171),
+        selectedItemColor: Colors.black, // Color for selected item
+        unselectedItemColor: Colors.grey, // Color for unselected items
+        backgroundColor: Colors.grey[200], // Background color of the BottomNavigationBar
         onTap: _onItemTapped, // Handle tap on navigation bar items
       ),
     );
