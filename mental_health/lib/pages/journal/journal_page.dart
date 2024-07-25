@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'add_journal_entry_page.dart';
-import 'view_journal_entry_page.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'add_journal.dart';
+import 'view_journal.dart';
 
 class JournalPage extends StatefulWidget {
   const JournalPage({super.key});
@@ -10,29 +11,7 @@ class JournalPage extends StatefulWidget {
 }
 
 class _JournalPageState extends State<JournalPage> {
-  final List<Map<String, String>> _journalEntries = [
-    {
-      "date": "02 May 2022",
-      "mood": "Awesome",
-      "moodColor": "0xFFFF0000",
-      "title": "Story of Jonathan",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis dui facilisi."
-    },
-    {
-      "date": "28 April 2022",
-      "mood": "Happy",
-      "moodColor": "0xFFFFFF00",
-      "title": "Story of Nathan",
-      "description": "Commodo pellentesque vivamus faucibus natoque enim elementum."
-    },
-    {
-      "date": "15 March 2022",
-      "mood": "Terrible",
-      "moodColor": "0xFF0000FF",
-      "title": "Story of Solomon",
-      "description": "Elementum diam amet commodo, mollis congue sed in. Vitae et mi pretium leo."
-    },
-  ];
+  final List<Map<String, String>> _journalEntries = [];
 
   void _addNewEntry(Map<String, String> newEntry) {
     setState(() {
@@ -43,21 +22,23 @@ class _JournalPageState extends State<JournalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("All Journal"),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search bar
+            Text(
+              "Journals",
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
             TextField(
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
-                hintText: "Search Journal",
+                hintText: "Search journal",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -67,7 +48,6 @@ class _JournalPageState extends State<JournalPage> {
               ),
             ),
             const SizedBox(height: 16),
-            // List of journal entries
             Expanded(
               child: ListView.builder(
                 itemCount: _journalEntries.length,
@@ -87,7 +67,7 @@ class _JournalPageState extends State<JournalPage> {
                     child: JournalEntry(
                       date: entry["date"]!,
                       mood: entry["mood"]!,
-                      moodColor: Color(int.parse(entry["moodColor"]!)),
+                      emoji: entry["emoji"]!,
                       title: entry["title"]!,
                       description: entry["description"]!,
                     ),
@@ -103,9 +83,7 @@ class _JournalPageState extends State<JournalPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddJournalEntryPage(
-                addEntry: _addNewEntry,
-              ),
+              builder: (context) => AddJournalEntryPage(addEntry: _addNewEntry),
             ),
           );
         },
@@ -118,14 +96,14 @@ class _JournalPageState extends State<JournalPage> {
 class JournalEntry extends StatelessWidget {
   final String date;
   final String mood;
-  final Color moodColor;
+  final String emoji;
   final String title;
   final String description;
 
   const JournalEntry({
     required this.date,
     required this.mood,
-    required this.moodColor,
+    required this.emoji,
     required this.title,
     required this.description,
   });
@@ -146,16 +124,11 @@ class JournalEntry extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[600]),
                 ),
                 const Spacer(),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: moodColor.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    mood,
-                    style: TextStyle(color: moodColor),
-                  ),
+                EmotionWidget(
+                  emoji: emoji,
+                  label: mood,
+                  isSelected: true,
+                  onTap: () {},
                 ),
               ],
             ),
@@ -174,6 +147,43 @@ class JournalEntry extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class EmotionWidget extends StatelessWidget {
+  final String emoji;
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const EmotionWidget({
+    required this.emoji,
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Text(
+            emoji,
+            style: TextStyle(fontSize: 24),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? Colors.blue : Colors.black,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ],
       ),
     );
   }
