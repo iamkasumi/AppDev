@@ -9,7 +9,7 @@ Eunoia is a mobile application that promotes mental health support. Such an app 
 The following are the objectives of the mobile application:
 1. Offer users positive affirmations to promote mental well-being, boost self-esteem, and encourage a positive mindset.
 2. Implement a journal that allows users to monitor their mental well-being over time.
-3. To include videos from YouTube to motivate the users, which is beneficial for visual learners.
+3. To include videos to motivate the users, which is beneficial for visual learners.
 
 
 ### SDG
