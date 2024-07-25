@@ -15,7 +15,7 @@ The following are the objectives of the mobile application:
 ### SDG
 "Our proposed system is connected to SDG 3.4: By 2030, reduce by one-third premature mortality from non-communicable diseases through prevention and treatment and promote mental health and well-being." 
 
-### Members and their Contributions  
+### Members 
 The following are the members of the group:  
 
 - Catilo, Kanneh Anthonie
