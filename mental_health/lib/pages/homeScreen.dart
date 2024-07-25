@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'video_page.dart';
+import 'video/video_page.dart';
 import 'affirmations/affirmations_page.dart';
 import 'journal/journal_page.dart';
 import 'home_page.dart'; 
