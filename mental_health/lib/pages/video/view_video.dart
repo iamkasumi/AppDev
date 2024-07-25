@@ -43,7 +43,11 @@ class _VideoDeckScreenState extends State<VideoDeckScreen> {
   void _playPauseVideo() {
     final controller = _videoControllers[_currentIndex];
     setState(() {
-      controller.value.isPlaying ? controller.pause() : controller.play();
+      if (controller.value.isPlaying) {
+        controller.pause();
+      } else {
+        controller.play();
+      }
     });
   }
 
@@ -118,17 +122,15 @@ class _VideoDeckScreenState extends State<VideoDeckScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.play_arrow, color: Colors.white),
+                              icon: Icon(
+                                controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                                color: Colors.white,
+                              ),
                               onPressed: _playPauseVideo,
                             ),
                             SizedBox(width: 8),
                             IconButton(
-                              icon: Icon(Icons.pause, color: Colors.white),
-                              onPressed: _playPauseVideo,
-                            ),
-                            SizedBox(width: 8),
-                            IconButton(
-                              icon: Icon(Icons.stop, color: Colors.white),
+                              icon: Icon(Icons.stop, color: Color.fromARGB(255, 239, 77, 77)),
                               onPressed: _stopVideo,
                             ),
                           ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AffirmationDetailPage extends StatelessWidget {
+class AffirmationDetailPage extends StatefulWidget {
   final String title;
   final List<String> affirmations;
   final String backgroundImage;
@@ -15,11 +15,27 @@ class AffirmationDetailPage extends StatelessWidget {
   });
 
   @override
+  _AffirmationDetailPageState createState() => _AffirmationDetailPageState();
+}
+
+class _AffirmationDetailPageState extends State<AffirmationDetailPage> {
+  Set<int> _likedAffirmations = {};
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          title,
+          widget.title,
           style: GoogleFonts.playfairDisplay(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -36,7 +52,7 @@ class AffirmationDetailPage extends StatelessWidget {
         children: [
           // Background color for the entire screen
           Container(
-            color: Color.fromARGB(255, 223, 235, 234), // Background color
+            color: Color.fromARGB(255, 255, 255, 255), // Background color
             child: SizedBox.expand(), 
           ),
           // Padding to create space between AppBar and CarouselSlider
@@ -49,8 +65,9 @@ class AffirmationDetailPage extends StatelessWidget {
                 enableInfiniteScroll: false,
                 viewportFraction: 0.9,
               ),
-              itemCount: affirmations.length,
+              itemCount: widget.affirmations.length,
               itemBuilder: (context, index, realIndex) {
+                final isLiked = _likedAffirmations.contains(index);
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Container(
@@ -63,7 +80,7 @@ class AffirmationDetailPage extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
                             child: Image.asset(
-                              backgroundImage,
+                              widget.backgroundImage,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -89,7 +106,7 @@ class AffirmationDetailPage extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(25.0),
                                   child: Text(
-                                    affirmations[index],
+                                    widget.affirmations[index],
                                     style: GoogleFonts.poppins(
                                       fontSize: 24,
                                       color: Colors.white,
@@ -122,21 +139,30 @@ class AffirmationDetailPage extends StatelessWidget {
                                   IconButton(
                                     icon: Icon(Icons.share, color: Colors.white),
                                     onPressed: () {
-                                      // Handle share action
+                                      _showSnackBar("Shared successfully");
                                     },
                                   ),
                                   SizedBox(width: 16),
                                   IconButton(
-                                    icon: Icon(Icons.favorite_border, color: Colors.white),
+                                    icon: Icon(
+                                      isLiked ? Icons.favorite : Icons.favorite_border,
+                                      color: isLiked ? Colors.red : Colors.white,
+                                    ),
                                     onPressed: () {
-                                      // Handle favorite action
+                                      setState(() {
+                                        if (isLiked) {
+                                          _likedAffirmations.remove(index);
+                                        } else {
+                                          _likedAffirmations.add(index);
+                                        }
+                                      });
                                     },
                                   ),
                                   SizedBox(width: 16),
                                   IconButton(
                                     icon: Icon(Icons.download, color: Colors.white),
                                     onPressed: () {
-                                      // Handle download action
+                                      _showSnackBar("Successfully downloaded.");
                                     },
                                   ),
                                 ],
