@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:video_player/video_player.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class VideoPage extends StatefulWidget {
   @override
@@ -88,7 +89,7 @@ class _VideoPageState extends State<VideoPage> {
         },
       ],
     },
-        {
+    {
       'image': 'images/affirm_images/_stress.png',
       'title': 'Release Stress and Anxiety',
       'videos': [
@@ -113,21 +114,76 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Affirmation Videos'),
-        backgroundColor: const Color.fromARGB(255, 97, 109, 105),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(63.0), // Height of the AppBar
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20.0), 
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 3), 
+              ),
+            ],
+          ),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min, // To center the row content
+                children: [
+                  Image.asset(
+                    'images/butterfly-1.jpg',
+                    width: 40,
+                    height: 40,
+                  ),
+                  
+                  const SizedBox(width: 8), 
+                  
+                  Text(
+                    "Videos",
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.more_vert, color: Colors.black),
+                onPressed: () {
+                  // Handle menu action
+                },
+              ),
+            ],
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: StaggeredGridView.countBuilder(
-          crossAxisCount: 4,
-          itemCount: _videos.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _buildVideoCard(context, _videos[index]);
-          },
-          staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
-          mainAxisSpacing: 8.0,
-          crossAxisSpacing: 8.0,
+      
+      body: Container(
+        color: Color.fromARGB(255, 240, 232, 222), // Light yellow color
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: StaggeredGridView.countBuilder(
+            crossAxisCount: 4,
+            itemCount: _videos.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _buildVideoCard(context, _videos[index]);
+            },
+            staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
+            mainAxisSpacing: 8.0,
+            crossAxisSpacing: 8.0,
+          ),
         ),
       ),
     );
@@ -200,9 +256,10 @@ class _VideoDeckScreenState extends State<VideoDeckScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Video Compilation'),
+        title: Text('Video Play'),
         backgroundColor: const Color.fromARGB(255, 97, 109, 105),
       ),
+      
       body: CarouselSlider.builder(
         itemCount: widget.videos.length,
         itemBuilder: (context, index, realIndex) {
@@ -217,6 +274,7 @@ class _VideoDeckScreenState extends State<VideoDeckScreen> {
                 : CircularProgressIndicator(),
           );
         },
+        
         options: CarouselOptions(
           height: MediaQuery.of(context).size.height * 0.8,
           enlargeCenterPage: true,
@@ -230,6 +288,7 @@ class _VideoDeckScreenState extends State<VideoDeckScreen> {
           },
         ),
       ),
+      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           final controller = _videoControllers[_currentIndex];

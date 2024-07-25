@@ -13,25 +13,25 @@ class JournalPage extends StatefulWidget {
 class _JournalPageState extends State<JournalPage> {
   final List<Map<String, String>> _journalEntries = [
     {
-      "date": "02 May 2022",
+      "date": "May 2, 2022",
       "mood": "Happy",
       "emoji": '😊',
       "title": "What are you grateful for?",
       "description": "I am grateful for the opportunity to help and learn from so many different people."
     },
     {
-      "date": "28 April 2022",
+      "date": "April 28, 2023",
       "mood": "Sad",
       "emoji": '😢',
       "title": "What one thing that drove your action?",
       "description": "Curiosity is often what drives my actions. It fuels the desire to explore new topics, solve problems, and understand the world better."
     },
     {
-      "date": "15 March 2022",
+      "date": "March 15, 2024",
       "mood": "Angry",
       "emoji": '😡',
       "title": "What was the best part of your day?",
-      "description": "The best part of my day is finishing this project."
+      "description": "The best part of my day is when I finished this project."
     },
   ];
 
@@ -44,6 +44,62 @@ class _JournalPageState extends State<JournalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(63.0), // Height of the AppBar
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20.0), 
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 3), 
+              ),
+            ],
+          ),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min, // To center the row content
+                children: [
+                  Image.asset(
+                    'images/butterfly-1.jpg',
+                    width: 40,
+                    height: 40,
+                  ),
+                  
+                  const SizedBox(width: 8), 
+                  
+                  Text(
+                    "Journal",
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.more_vert, color: Colors.black),
+                onPressed: () {
+                  // Handle menu action
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+
       body: Stack(
         children: [
           // Background Image
@@ -59,15 +115,6 @@ class _JournalPageState extends State<JournalPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Journals",
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-                const SizedBox(height: 16),
                 TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
